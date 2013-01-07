@@ -1,0 +1,34 @@
+<div class="span4">
+  <h3 class="full-name">
+    <input type="text" class="input-block-level no-border" ng-model="person.name" placeholder="Name" />
+  </h3>
+
+  <div class="note" style="position: relative;margin-top:16px;">
+    <div class="created muted">Summary</div>
+    <textarea ng-model="person.summary_note" class="input-block-level no-border"></textarea>
+  </div>
+
+  <div class="contacts">
+    <div class="contact" ng-repeat="contact in person.contacts" style="margin-bottom: 12px;">
+      <div style="font-size: 1.7em;line-height: 1.3em;">{{contact.content}}</div>
+      <div class="muted">{{contact.description}}</div>
+    </div>
+
+    <button class="btn btn-mini" style="opacity: .3" ng-click="addContact()"><i class="icon-plus"></i></button>
+  </div>
+</div>
+<div class="span8">
+  <div class="notes">
+     <form ng-submit="addNote()" class="note">
+      <div class="created muted">shift+return to save</div>
+      <textarea class="input-block-level" ng-model="noteContent" autofocus></textarea>
+      <div>
+        <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+    </form>
+    <div class="note" ng-repeat="note in person.notes | orderBy:'created':true">
+      <div class="created muted">{{note.created}}</div>
+      <textarea ng-model="note.content"></textarea>
+    </div>
+  </div>
+</div>
