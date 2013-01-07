@@ -1,0 +1,49 @@
+input.no-border,
+textarea.no-border {
+	border: 0 none;
+	box-shadow: none;
+	resize: none;
+	background-color: transparent;
+}
+
+.full-name input {
+	font-size: 1.15em;
+	line-height: 1.15em;
+	height: 1.3em;
+}
+
+.note {
+	padding: 16px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.note textarea {
+	border: 0 none;
+	box-shadow: none;
+	resize: none;
+	-webkit-box-shadow: none;
+}
+
+td input[type="text"] {
+	margin-bottom: 0;
+}
+
+.people tr {
+	cursor: pointer;
+}
+
+.note .created {
+	float: right;
+	font-size: .95em;
+	margin-top: -16px;
+	padding: 6px;
+	display: inline-block;
+	background-color: #f7f7f7;
+	border-left: 1px solid rgba(0, 0, 0, 0.2)
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	position: absolute;
+	float: right;right: 0;
+	margin-right: 0;
+}
