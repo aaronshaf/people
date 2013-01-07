@@ -1,0 +1,36 @@
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>
+				<span style="visibility: hidden;">Status</span>
+			</th>
+			<th ng-click="testSort()">
+				<span style2="visibility: hidden;">Name</span>
+			</th>
+			<th>
+				Last attendance
+			</th>
+			<th>
+				Last conversation
+			</th>
+			<th>
+				<span style2="visibility: hidden;">Last note</span>
+			</th>
+		</tr>
+	</thead>
+	<tbody class="people">
+		<tr ng-repeat="person in people | orderBy:predicate:reverse" ng-click="go(person)">
+			<td style="width: 1px;">
+				<div ng-click="toggleStatus(person)" class="btn-success" style="display: inline-block;width: 20px;height: 100%;"></div>
+			</td>
+			<td class="lead" style="white-space: nowrap;">{{person.name}}</td>
+			<td>Monday, 2:11pm</td>
+			<td>Yesterday, 3:35pm</td>
+			<td>LM <span class="muted small">Two hours ago</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<div>
+	<button class="btn" ng-click="add()"><i class="icon-plus"></i></button>
+</div>
