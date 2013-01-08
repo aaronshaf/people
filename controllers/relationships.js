@@ -9,6 +9,16 @@ RelationshipsController = _.bindAll({
 		app.get('/relationships/:_id', this.readOne);
 		app.post('/relationships', this.create);
 		app.post('/relationships/:_id', this.save);
+		app.delete('/relationships/:_id', this.delete);
+	},
+
+	delete: function(req, res) {
+		console.log('Trying to delete ' + req.params._id);
+		Relationships.remove(req.params._id).then(function() {
+			res.json({success:"Relationship was deleted."});
+		}).fail(function() {
+			res.json(500,{error: "Could not delete relationship."});
+		});
 	},
 
 	create: function(req, res) {
