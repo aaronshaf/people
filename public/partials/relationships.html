@@ -2,7 +2,7 @@
 	<thead>
 		<tr>
 			<th>
-				<span style="visibility: hidden;">Status</span>
+				<span style="visibility: hidden;"></span>
 			</th>
 			<th ng-click="testSort()">
 				<span style2="visibility: hidden;">Name</span>
@@ -19,13 +19,13 @@
 				<div ng-click="toggleStatus(relationship)" class="btn-success" style="display: inline-block;width: 20px;height: 100%;"></div>
 			</td>
 			<td class="lead" style="white-space: nowrap;">{{relationship.name}}</td>
-			<td>Yada yada yada yada yada yada...</td>
-			<td>LM. Mauris commodo turpis et risus. <span class="muted small">Yesterday, 3:35pm</span></td>
+			<td>{{relationship.summary}}</td>
+			<td>LM. Mauris commodo turpis et risus. <span class="pull-right muted small">Yesterday, 3:35pm</span></td>
 		</tr>
 	</tbody>
 </table>
 
 <form class="input-append" ng-submit="add()">
 	<input type="text" ng-model="newRelationshipName" placeholder="Name" />
-	<button class="btn" type="submit">Add relationship</button>
+	<button class="btn" type="submit">Add</button>
 </form>
