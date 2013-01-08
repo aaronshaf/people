@@ -1,0 +1,44 @@
+<form class="form">
+  <legend>Security</legend>
+
+  <div class="control-group">
+    <label class="control-label">Name of this device</label>
+    <div class="controls">
+      <input type="text" ng-model="settings.thisDevice.name" placeholder="Aaron's laptop" />
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">
+      Private key
+    </label>
+    <div class="controls">
+      <div class="input-prepend input-append">
+        <button class="btn">Show</button>
+        <input type="password" ng-model="settings.private_key" />
+        <button class="btn">Delete and regenerate</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-block hide">
+    <strong>Be careful with your private key</strong>. It provides full access to your account.
+  </div>
+
+  <legend>Backup</legend>
+
+  <div class="control-group">
+    <button class="btn btn-large"><i class="icon-download"></i> Export</button>
+    <button class="btn btn-large"><i class="icon-upload"></i> Import</button>
+  </div>
+
+  <legend>Note templates</legend>
+  <div class="note-template" ng-repeat="noteTemplate in settings.noteTemplates">
+    <input type="text" ng-model="noteTemplate.label" />
+    <div>
+      <input type="radio" ng-model="noteTemplate.showAsColumn" />
+    </div>
+    <textarea ng-model="noteTemplate.content"></textarea>
+  </div>
+  <button class="btn btn-mini" ng-click="addNoteTemplate()"><i class="icon-plus"></i></button>
+</form>
