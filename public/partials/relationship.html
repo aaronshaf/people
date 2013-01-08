@@ -22,10 +22,9 @@
 <div class="span8">
   <div class="notes">
      <form ng-submit="addNote()" class="note">
-      <div class="created muted">shift+return to save</div>
       <textarea class="input-block-level" ng-model="noteContent" autofocus></textarea>
       <div>
-        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-primary" type="submit">Add</button>
       </div>
     </form>
     <div class="note" ng-repeat="note in relationship.notes | orderBy:'created':true">
@@ -33,5 +32,5 @@
       <textarea ng-model="note.content"></textarea>
     </div>
   </div>
-  <button class="btn btn-mini btn-danger" ng-click="remove()" style="opacity: .3"><i class="icon-trash icon-white"></i></button>
+  <button class="btn btn-danger" ng-click="remove()" style="opacity: .1"><i class="icon-trash icon-white"></i> Delete relationship</button>
 </div>
