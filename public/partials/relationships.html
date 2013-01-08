@@ -19,7 +19,7 @@
 		</tr>
 	</thead>
 	<tbody class="people">
-		<tr ng-repeat="relationship in relationships | orderBy:predicate:reverse" ng-click="go(relationship)">
+		<tr ng-repeat="relationship in relationships | filter:relationshipQuery | orderBy:predicate:reverse" ng-click="go(relationship)">
 			<td style="width: 1px;">
 				<div ng-click="toggleStatus(relationship)" class="btn-success" style="display: inline-block;width: 20px;height: 100%;"></div>
 			</td>

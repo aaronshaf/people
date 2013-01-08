@@ -5,8 +5,13 @@
     $routeProvider.
       when('/', {templateUrl: 'partials/relationships.html',   controller: RelationshipsController}).
       when('/r/:relationshipId', {templateUrl: 'partials/relationship.html', controller: RelationshipController}).
+      when('/settings', {templateUrl: 'partials/settings.html', controller: SettingsController}).
       otherwise({redirectTo: '/'});
   });
+
+  function SettingsController($scope, $location) {
+
+  }
 
   function RelationshipsController($scope, $location, $resource) {
     var Relationships = $resource('/relationships/:_id');
@@ -47,7 +52,6 @@
           return;
         }
         $scope.relationship.$save();
-        console.log('!');
       },true);
     });
 
@@ -57,6 +61,9 @@
     };
 
     $scope.addNote = function() {
+      if(!$scope.relationship.notes) {
+         $scope.relationship.notes = [];
+      }
       $scope.relationship.notes.push({
         content: $scope.noteContent,
         created: timestamp()
