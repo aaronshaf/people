@@ -18,6 +18,8 @@
   }
 
   function RelationshipsController($scope, $location, $resource) {
+    $scope.settings.subtitle = "";
+
     var Relationships = $resource('/relationships/:_id');
 
     $scope.reverse = false;
@@ -49,6 +51,7 @@
   function RelationshipController($resource, $scope, $rootScope, $routeParams, $location) {
     var Relationships = $resource('/relationships/:_id',{_id:'@_id'});
     $scope.relationship = Relationships.get({_id:$routeParams.relationshipId},function() {
+      $scope.settings.subtitle = " › " + $scope.relationship.name;
       $scope.$watch('relationship',function(oldValue,newValue) {
         if(angular.equals(oldValue,newValue)) {
           return;
@@ -81,6 +84,8 @@
 
 function AppController($scope,$location) {
   $scope.settings = {
+    title: "Relationships",
+    subtitle: "",
     public_key: id() + id() + id() + id() + id(),
     private_key: id() + id() + id() + id() + id(),
     noteTemplates: []
