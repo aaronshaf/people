@@ -63,7 +63,7 @@ var Base = {
       return collection.remove(query, function(error, result) {
         if (error) {
           return defer.reject(error);
-        } else if (!defer.promise.isResolved()) {
+        } else {
           return defer.resolve(result);
         }
       });
