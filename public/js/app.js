@@ -10,7 +10,11 @@
   });
 
   function SettingsController($scope, $location) {
+    $scope.addNoteTemplate = function() {
+      $scope.settings.noteTemplates.push({
 
+      });
+    };
   }
 
   function RelationshipsController($scope, $location, $resource) {
@@ -31,16 +35,14 @@
     };
 
     $scope.add = function() {
-      //var id = id();
-      //$location.path('/r/' + id);
-
       var relationship = new Relationships({
         name: $scope.newRelationshipName
       });
-      relationship.$save();
+      relationship.$save(function() {
+        $scope.go(relationship);
+      });
       $scope.relationships.push(relationship);
       $scope.newRelationshipName = '';
-      //$location.path('/r/add');
     };
   }
 
@@ -78,12 +80,17 @@
 }(angular,console));
 
 function AppController($scope,$location) {
-  var id = '88825f'; //Math.floor(Math.random() * 0x10000).toString(16);
+  $scope.settings = {
+    public_key: id() + id() + id() + id() + id(),
+    private_key: id() + id() + id() + id() + id(),
+    noteTemplates: []
+  };
 
   $scope.goHome = function() {
     $location.path('/');
   };
 
+  /*
   $scope.relationships = [{
     _id: id,
     name: 'John Doe',
@@ -117,6 +124,7 @@ function AppController($scope,$location) {
     summary_note: '[Summary notes]',
     created: timestamp()
   }];
+  */
 }
 
 function id() {
