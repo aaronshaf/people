@@ -99,6 +99,39 @@ var Base = {
       });
     });
     return defer.promise;
+  },
+
+  save: function(data) {
+    var defer = Q.defer();
+    var _id;
+
+    //data = this.prepare(data);
+
+    if (data._id) {
+      _id = ObjectID(data._id);
+      delete data._id;
+    } else {
+      _id = ObjectID();
+    }
+
+    mongo.collection(this.collection).then(function(collection) {
+      return collection.findAndModify({
+        _id: _id
+      }, {}, {
+        $set: data
+      }, {
+        upsert: true,
+        "new": true
+      }, function(error, object) {
+        if (error) {
+          return defer.reject(error);
+        } else {
+          return defer.resolve(object);
+        }
+      });
+    });
+
+    return defer.promise;
   }
 };
 
