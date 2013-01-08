@@ -5,7 +5,7 @@ exports.mongo = {};
 var connection;
 
 if(!process.env.MONGO_URL) {
-	process.env.MONGO_URL= 'mongodb://localhost';
+	process.env.MONGO_URL= 'mongodb://admin@localhost';
 }
 
 //MongoDB
