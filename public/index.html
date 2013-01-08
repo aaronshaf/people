@@ -14,12 +14,12 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
-        <a class="brand" ng-click="goHome()">Relationships</a>
+        <a class="brand" ng-click="goHome()">{{settings.title}} <span>{{settings.subtitle}}</span></a>
         <form class="navbar-search pull-right">
           <input type="text" class="search-query" ng-model="relationshipQuery" placeholder="Search" autofocus>
         </form>
         <ul class="nav pull-right">
-          <li><a href="#/settings"><i class="icon-wrench"></i></a></li>
+          <li><a href="#/settings">Settings</a></li>
         </ul>
       </div>
     </div>
