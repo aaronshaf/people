@@ -4,7 +4,6 @@
   angular.module('relationships', ['ngResource']).config(function($routeProvider) {
     $routeProvider.
       when('/', {templateUrl: 'partials/relationships.html',   controller: RelationshipsController}).
-      when('/r/add', {templateUrl: 'partials/relationship.html', controller: AddRelationshipController}).
       when('/r/:relationshipId', {templateUrl: 'partials/relationship.html', controller: RelationshipController}).
       otherwise({redirectTo: '/'});
   });
@@ -40,10 +39,6 @@
     };
   }
 
-  function AddRelationshipController($resource, $scope) {
-
-  }
-
   function RelationshipController($resource, $scope, $rootScope, $routeParams, $location) {
     var Relationships = $resource('/relationships/:_id',{_id:'@_id'});
     $scope.relationship = Relationships.get({_id:$routeParams.relationshipId},function() {
@@ -57,10 +52,9 @@
     });
 
     $scope.remove = function(contact) {
-      //delete contact;
+      $scope.relationship.$remove();
+      $location.path('/');
     };
-
-
 
     $scope.addNote = function() {
       $scope.relationship.notes.push({
