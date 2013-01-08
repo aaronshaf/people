@@ -1,9 +1,9 @@
 <div class="span4">
-  <h3 class="full-name">
+  <h3 class="full-name hide">
     <input type="text" class="input-block-level no-border" ng-model="relationship.name" placeholder="Name" />
   </h3>
 
-  <div class="note" style="position: relative;margin-top:16px;">
+  <div class="note" style="position: relative;">
     <div class="created muted">Summary</div>
     <textarea ng-model="relationship.summary_note" class="input-block-level no-border"></textarea>
   </div>
@@ -14,9 +14,7 @@
       <div class="muted">{{contact.description}}</div>
     </div>
 
-    <button class="btn btn-mini" style="opacity: .3" ng-click="addContact()">
-      <i class="icon-plus"></i>
-    </button>
+    <button class="btn" style="opacity: .3" ng-click="addContact()">Add contact</button>
   </div>
 </div>
 <div class="span8">
@@ -32,5 +30,5 @@
       <textarea ng-model="note.content"></textarea>
     </div>
   </div>
-  <button class="btn btn-danger" ng-click="remove()" style="opacity: .1"><i class="icon-trash icon-white"></i> Delete relationship</button>
+  <button class="btn btn-danger" ng-click="remove()" style="opacity: .1">Delete relationship</button>
 </div>
