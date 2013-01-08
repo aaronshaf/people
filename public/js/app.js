@@ -1,7 +1,7 @@
 (function(angular,console) {
   "use strict";
 
-  angular.module('relationships', ['ngResource']).config(function($routeProvider) {
+  angular.module('notes', ['ngResource']).config(function($routeProvider) {
     $routeProvider.
       when('/', {templateUrl: 'partials/relationships.html',   controller: RelationshipsController}).
       when('/r/:relationshipId', {templateUrl: 'partials/relationship.html', controller: RelationshipController}).
@@ -20,7 +20,7 @@
   }
 
   function RelationshipsController($scope, $location, $resource) {
-    $scope.settings.subtitle = "";
+    $scope.settings.subtitle = '';
 
     var Relationships = $resource('/relationships/:_id');
 
@@ -86,7 +86,7 @@
 
 function AppController($scope,$location) {
   $scope.settings = {
-    title: "Relationships",
+    title: "Notes",
     subtitle: "",
     public_key: id() + id() + id() + id() + id(),
     private_key: id() + id() + id() + id() + id(),
