@@ -19,11 +19,11 @@
 		</tr>
 	</thead>
 	<tbody class="people">
-		<tr ng-repeat="person in people | orderBy:predicate:reverse" ng-click="go(person)">
+		<tr ng-repeat="relationship in relationships | orderBy:predicate:reverse" ng-click="go(relationship)">
 			<td style="width: 1px;">
-				<div ng-click="toggleStatus(person)" class="btn-success" style="display: inline-block;width: 20px;height: 100%;"></div>
+				<div ng-click="toggleStatus(relationship)" class="btn-success" style="display: inline-block;width: 20px;height: 100%;"></div>
 			</td>
-			<td class="lead" style="white-space: nowrap;">{{person.name}}</td>
+			<td class="lead" style="white-space: nowrap;">{{relationship.name}}</td>
 			<td>Monday, 2:11pm</td>
 			<td>Yesterday, 3:35pm</td>
 			<td>LM <span class="muted small">Two hours ago</span></td>
@@ -31,6 +31,7 @@
 	</tbody>
 </table>
 
-<div>
+<div class="input-append">
+	<input type="text" ng-model="newRelationshipName" placeholder="Name" />
 	<button class="btn" ng-click="add()"><i class="icon-plus"></i></button>
 </div>
