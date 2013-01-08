@@ -10,6 +10,8 @@
   });
 
   function SettingsController($scope, $location) {
+    $scope.settings.subtitle = " › " + "Settings"
+
     $scope.addNoteTemplate = function() {
       $scope.settings.noteTemplates.push({
 
