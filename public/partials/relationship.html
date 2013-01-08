@@ -7,15 +7,7 @@
     <div class="created muted">Summary</div>
     <textarea ng-model="relationship.summary_note" class="input-block-level no-border"></textarea>
   </div>
-
-  <div class="contacts">
-    <div class="contact" ng-repeat="contact in relationship.contacts" style="margin-bottom: 12px;">
-      <div style="font-size: 1.7em;line-height: 1.3em;">{{contact.content}}</div>
-      <div class="muted">{{contact.description}}</div>
-    </div>
-
-    <button class="btn" style="opacity: .3" ng-click="addContact()">Add contact</button>
-  </div>
+  <button class="btn btn-danger" ng-click="remove()" style="opacity: .1">Delete relationship</button>
 </div>
 <div class="span8">
   <div class="notes">
@@ -30,5 +22,4 @@
       <textarea ng-model="note.content"></textarea>
     </div>
   </div>
-  <button class="btn btn-danger" ng-click="remove()" style="opacity: .1">Delete relationship</button>
 </div>
