@@ -1,58 +1,77 @@
 (function(angular,console) {
   "use strict";
 
-  angular.module('crm', []).config(function($routeProvider,$resource) {
+  angular.module('relationships', ['ngResource']).config(function($routeProvider) {
     $routeProvider.
-      when('/', {templateUrl: 'partials/relationships.html',   controller: PeopleController}).
-      when('/p/:personId', {templateUrl: 'partials/relationship.html', controller: PersonController}).
+      when('/', {templateUrl: 'partials/relationships.html',   controller: RelationshipsController}).
+      when('/r/add', {templateUrl: 'partials/relationship.html', controller: AddRelationshipController}).
+      when('/r/:relationshipId', {templateUrl: 'partials/relationship.html', controller: RelationshipController}).
       otherwise({redirectTo: '/'});
   });
 
-  function PeopleController($scope, $location) {
+  function RelationshipsController($scope, $location, $resource) {
+    var Relationships = $resource('/relationships/:_id');
+
     $scope.reverse = false;
     $scope.predicate = 'name';
+
+    $scope.relationships = Relationships.query();
 
     $scope.testSort = function() {
       $scope.predicate = 'name';
       $scope.reverse = !$scope.reverse;
     };
 
-    $scope.go = function(person) {
-      $location.path('/r/' + person._id);
+    $scope.go = function(relationship) {
+      $location.path('/r/' + relationship._id);
     };
 
     $scope.add = function() {
-      var id = Math.floor(Math.random() * 0x10000).toString(16);
-      $scope.relationship[id] = {
-        _id: id,
-        contacts: [],
-        notes: [],
-        created: timestamp()
-      };
-      $location.path('/r/' + id);
+      //var id = id();
+      //$location.path('/r/' + id);
+
+      var relationship = new Relationships({
+        name: $scope.newRelationshipName
+      });
+      relationship.$save();
+      $scope.relationships.push(relationship);
+      $scope.newRelationshipName = '';
+      //$location.path('/r/add');
     };
   }
 
-  function PersonController($scope, $rootScope, $routeParams, $location, $resource) {
-    $scope.person = $scope.people[$routeParams.personId];
+  function AddRelationshipController($resource, $scope) {
 
+  }
 
-    var People = $resource('/people/:personId');
-    var user = People.get({$routeParams.personId}, function() {
-      user.abc = true;
-      //user.$save();
+  function RelationshipController($resource, $scope, $rootScope, $routeParams, $location) {
+    var Relationships = $resource('/relationships/:_id',{_id:'@_id'});
+    $scope.relationship = Relationships.get({_id:$routeParams.relationshipId},function() {
+      $scope.$watch('relationship',function(oldValue,newValue) {
+        if(angular.equals(oldValue,newValue)) {
+          return;
+        }
+        $scope.relationship.$save();
+        console.log('!');
+      },true);
     });
 
     $scope.remove = function(contact) {
       //delete contact;
     };
 
+
+
     $scope.addNote = function() {
-      $scope.person.notes.push({
+      $scope.relationship.notes.push({
         content: $scope.noteContent,
         created: timestamp()
       });
       $scope.noteContent = "";
+    };
+
+    $scope.save = function() {
+      $scope.relationship.$save();
     };
   }
 }(angular,console));
@@ -64,9 +83,7 @@ function AppController($scope,$location) {
     $location.path('/');
   };
 
-  //$scope.people = {};
-
-  $scope.people = [{
+  $scope.relationships = [{
     _id: id,
     name: 'John Doe',
     contacts: [
@@ -99,6 +116,10 @@ function AppController($scope,$location) {
     summary_note: '[Summary notes]',
     created: timestamp()
   }];
+}
+
+function id() {
+  return Math.floor(Math.random() * 0x10000).toString(16);
 }
 
 function timestamp() {
