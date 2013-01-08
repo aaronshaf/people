@@ -46,6 +46,8 @@ exports.query = function(query) {
 		query = {
 			$or: conditions
 		};
+	} else if(typeof query._id === "string") {
+		query._id = ObjectID(query);
 	}
 	return query;
 };

@@ -10,11 +10,6 @@ var Base = {
 
     var defer = Q.defer();
 
-    if(!this.collection) {
-      defer.reject('Collection name not set.');
-      return defer.promise;
-    }
-
     var collectionName = this.collection;
     query = mongo.query(query);
 
@@ -50,14 +45,7 @@ var Base = {
   remove: function(query) {
     var defer = Q.defer();
 
-    if(!this.collection) {
-      defer.reject('Collection name not set.');
-      return defer.promise;
-    }
-
-    if(typeof query._id === 'string') {
-      query._id = ObjectID(query._id);
-    }
+    query = mongo.query(query);
 
     mongo.collection(this.collection).then(function(collection) {
       return collection.remove(query, function(error, result) {
@@ -74,10 +62,7 @@ var Base = {
 
   find: function(query, options) {
     var defer = Q.defer();
-    if(!this.collection) {
-      defer.reject('Collection name not set.');
-      return defer.promise;
-    }
+    
     query = query || {};
     query = mongo.query(query);
 

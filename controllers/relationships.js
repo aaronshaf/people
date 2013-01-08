@@ -9,10 +9,10 @@ RelationshipsController = _.bindAll({
 		app.get('/relationships/:_id', this.readOne);
 		app.post('/relationships', this.create);
 		app.post('/relationships/:_id', this.save);
-		app.delete('/relationships/:_id', this.delete);
+		app.delete('/relationships/:_id', this.remove);
 	},
 
-	delete: function(req, res) {
+	remove: function(req, res) {
 		console.log('Trying to delete ' + req.params._id);
 		Relationships.remove(req.params._id).then(function() {
 			res.json({success:"Relationship was deleted."});
